@@ -1,25 +1,22 @@
 <?php 
 
 require_once('inc\Page.class.php');
-<<<<<<< HEAD
 require_once('inc\FileAgent.class.php');
 require_once('inc\Person.class.php');
 require_once('inc\config.inc.php');
 
 
-Page::HTML_Header();
+// Page::HTML_Header();
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    FileAgent::writeToFile($_POST);
-}
+// if($_SERVER["REQUEST_METHOD"] == "POST") {
+//     FileAgent::writeToFile($_POST);
+// }
 
-var_dump(FileAgent::readFile());
+// var_dump(FileAgent::readFile());
 
 
-Page::HTML_Footer();
-=======
+// Page::HTML_Footer();
 
-HTML_Header();
 
 /**
  * Assignment 01
@@ -39,7 +36,7 @@ HTML_Header();
 
 //UNIMPLEMENTED METHODs
 //INITIALIZE PAGE
-$newPerson = new Person();
+$newPerson = new Person("", "", "", "", "", "", "");
 $peopleArray = array();
 $peopleArray[] = $newPerson;
 $pIndex = 0;
@@ -82,5 +79,4 @@ if(isset($_POST['btnDelete'])) {
 
 
 HTML_Footer();
->>>>>>> 386de5af77df1c4d010ccd67602abf4f0aae907e
 ?>
