@@ -47,6 +47,21 @@ class FileAgent {
         }
     }
 
+    static function ReadPeople(){    
+        try {
+            $contents = self::readFile();
+            $people = array();
+            $lines = explode("\n", $contents);
+            for ($i=1; $i < count($lines) ; $i++) { 
+                $columns = explode(",", $lines[$i]);
+                $people[] = new Person($columns[1], $columns[2], $columns[0], $columns[3], $columns[4], $columns[5], $columns[6]);
+            }
+            return $people;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+        
+    }
 
 
 }
