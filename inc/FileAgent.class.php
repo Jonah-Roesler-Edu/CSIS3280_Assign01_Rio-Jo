@@ -85,14 +85,41 @@ class FileAgent {
         }
 
         // var_dump($people);
-        $writeFile = fopen(DATAFILE_BOOK, 'w');
-        fclose($writeFile);
+
+        //Write first line in file, the file headers
+        $content = array();
+        $content [] = $people[0]->email;
+        $content [] = $people[0]->fName;
+        $content [] = $people[0]->lName;
+        $content [] = $people[0]->gender;
+        $content [] = $people[0]->street;
+        $content [] = $people[0]->city;
+        $content [] = $people[0]->country;
+        $contentToWrite = implode(',', $content);
+
+        try {
+            $writeFile = fopen(DATAFILE_BOOK, 'w');
+            fwrite($writeFile, $contentToWrite);
+            fclose($writeFile);
+
+            if(!$writeFile) {
+                throw new Exception("File " . DATAFILE_BOOK ." could not be found!");
+            }
+        }
+        catch(Exception $fe) {
+            echo $fe->getMessage();
+        }
+
+
 
         $deleteID = $post['email'];
         var_dump($post['email']);
 
+
+
+        //Starts at 1 to skip fileheaders
         for($i = 1; $i < count($people); $i++) {
-            var_dump($people[$i]->email);
+            //var_dump($people[$i]->email);
             if(!strcasecmp($people[$i]->email, $deleteID)) {
                 continue;
             }
@@ -113,35 +140,6 @@ class FileAgent {
             }
         }
     }
-
-    // static function findPerson($email) {
-    //     $peopleArr = array();
-    //     for($i = 0; $i < count($peopleArr); $i++) {
-    //         if(strcasecmp($peopleArr[$i]->email, $email) ) {
-    //             $returnPerson = $peopleArr[$i+1];
-    //             break;
-    //         }
-    //     }
-    // }
-
-    // static function nextPerson($email) {
-    //     $peopleArr = self::ReadPeople();
-    //     $returnPerson;
-    //     $counter = 0;
-
-    //     if($email = '') {
-    //         $returnPerson = $peopleArr[0];
-    //     }
-    //     else {
-    //         for($i = 0; $i < count($peopleArr); $i++) {
-    //             if(strcasecmp($peopleArr[$i]->email, $email) ) {
-    //                 $returnPerson = $peopleArr[$i+1];
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     return $returnPerson;
-    // }
 
 
 }
