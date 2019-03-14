@@ -18,6 +18,13 @@ class Page {
         <?php
     }
 
+    static function HTML_message($message){?>
+        <DIV class="form-group">
+                        <h3><?php echo $message;?></h3>
+        </DIV>    
+    <?php
+    }
+
     static function HTML_writeForm(Person $writePerson, $index) {
         ?>
         <h1 class="display-4">Assignment #1 - Group Jonah and Rafael</h1>
